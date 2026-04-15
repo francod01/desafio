@@ -7,49 +7,61 @@
 </head>
 <body>
     <h1>Matricula do Curso</h1>
+
     <p>Nome</p> 
-    <input type="name" id="Nome" placeholder="Digite Seu Nome">
+    <input type="text" id="nome" placeholder="Digite Seu Nome">
+
     <p>Data de Nascimento</p>
-    <input type="date" id="dt_nasc" placeholder="Data de Nascimento">
+    <input type="date" id="dt_nasc">
+
     <p>Nome da Escola</p>
-    <input type="name" id="Escola" placeholder="Nome da Escola">
+    <input type="text" id="escola">
+
     <p>Série Escolar</p>
-    <input type="name" id="Serie" placeholder="Série Escolar">
+    <input type="text" id="serie">
+
     <p>Curso que deseja fazer</p>
-    <input type="name" id="Curso" placeholder="Curso que deseja fazer">
-    <button onclick="Verificar()">Verificar Idade</button>
+    <input type="text" id="curso">
+
+    <button onclick="Verificar()">Verificar Data de Nascimento</button>
+
     <div id="resultado"></div>
 
 </body>
 </html>
-<body>
 <script>
   function Verificar(){
-    let Nome = document.getElementById("nome").value;
-    let dt_nasc = document.getElementById("Data de Nascimento").value;
+    let nome = document.getElementById("nome").value;
+    let dt_nasc = document.getElementById("dt_nasc").value;
     let escola = document.getElementById("escola").value;
     let serie = document.getElementById("serie").value;
     let curso = document.getElementById("curso").value;
     let res = document.getElementById("resultado");
-    //Regra do negocio : Não permitir menores de 14 anos//
-    Let limite = idade *18;
-     
-    //Limpa o resultado anterior e define um estilo basico//
 
     res.innerHTML = "";
     res.style.marginTop = "20px";
     res.style.fontWeight = "bold";
     
-    // Estrutura condicional IF/ELSE 
-        if("idade <= limite"){
-        res.innerHTML = "Idade negada, espere completar a idade <br>";
-        res.innerHTML += "A idade não está dentro do limite para realizar a matrícula" + limite.toFixed(2);
-        res.style.color = "red";
-  }else{
+    // cálculo da idade
+    let hoje = new Date();
+    let nascimento = new Date(dt_nasc);
+
+    let idade = hoje.getFullYear() - nascimento.getFullYear
+
+    //ajuste se ainda não fez aniversário
+    let mes = hoje.getMonth() - nascimento.getMonth;
+    if(mes < 0 || (mes === 0 && hoje.getDate() < nascimento.getDate())){
+        idade--;
+    }
+     if (idade < 14){
+    res.innerHTML = "❌ Matrícula não aprovada.<br>";
+    res.innerHTML += "Motivo: idade abaixo de 14 anos.<br>";
+    res.innerHTML += "Você precisa ter pelo menos 14 anos para se inscrever.";
+    res.style.color = "red";
+}else{
         res.innerHTML = "Idade aprovada para fazer o curso de PPT ou MENTORIA <br>";
-        res.innerHTML += "A idade está dentro do do limite para realizar a matrícula" + limite.toFixed(2);
+        res.innerHTML += "A idade está dentro do do limite para realizar a matrícula";
         res.style.color = "green";
   }
 }
 </script>
-</body>
