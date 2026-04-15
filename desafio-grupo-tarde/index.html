@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matricula</title>
+</head>
+<body>
+    <h1>Matricula do Curso</h1>
+    <p>Nome</p> 
+    <input type="name" id="Nome" placeholder="Digite Seu Nome">
+    <p>Data de Nascimento</p>
+    <input type="date" id="dt_nasc" placeholder="Data de Nascimento">
+    <p>Nome da Escola</p>
+    <input type="name" id="Escola" placeholder="Nome da Escola">
+    <p>Série Escolar</p>
+    <input type="name" id="Serie" placeholder="Série Escolar">
+    <p>Curso que deseja fazer</p>
+    <input type="name" id="Curso" placeholder="Curso que deseja fazer">
+    <button onclick="Verificar()">Verificar Idade</button>
+    <div id="resultado"></div>
+
+</body>
+</html>
+<body>
+<script>
+  function Verificar(){
+    let Nome = document.getElementById("nome").value;
+    let dt_nasc = document.getElementById("Data de Nascimento").value;
+    let escola = document.getElementById("escola").value;
+    let serie = document.getElementById("serie").value;
+    let curso = document.getElementById("curso").value;
+    let res = document.getElementById("resultado");
+    //Regra do negocio : Não permitir menores de 14 anos//
+    Let limite = idade *18;
+     
+    //Limpa o resultado anterior e define um estilo basico//
+
+    res.innerHTML = "";
+    res.style.marginTop = "20px";
+    res.style.fontWeight = "bold";
+    
+    // Estrutura condicional IF/ELSE 
+        if("idade <= limite"){
+        res.innerHTML = "Idade negada, espere completar a idade <br>";
+        res.innerHTML += "A idade não está dentro do limite para realizar a matrícula" + limite.toFixed(2);
+        res.style.color = "red";
+  }else{
+        res.innerHTML = "Idade aprovada para fazer o curso de PPT ou MENTORIA <br>";
+        res.innerHTML += "A idade está dentro do do limite para realizar a matrícula" + limite.toFixed(2);
+        res.style.color = "green";
+  }
+}
+</script>
+</body>
